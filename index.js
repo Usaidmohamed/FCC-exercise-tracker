@@ -47,8 +47,8 @@ app.post('/api/users', async (req, res) =>{
 
     await addUser.save();
     return res.json({
-      user_id: addUser.id,
-      username: username
+      username: username,
+      user_id: addUser.id
     });
 
   } catch (error) {
