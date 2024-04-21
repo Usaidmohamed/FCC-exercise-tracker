@@ -47,8 +47,8 @@ app.post('/api/users', async (req, res) =>{
 
     await addUser.save();
     return res.json({
-      user_id: addUser.id,
-      username: username
+      username: username,
+      user_id: addUser.id
     });
 
   } catch (error) {
@@ -136,6 +136,6 @@ app.get('/api/users/:_id/logs', async (req, res) =>{
   });
 })
 
-const listener = app.listen(process.env.PORT || 3000, () => {
+const listener = app.listen(process.env.PORT, () => {
   console.log('Your app is listening on port ' + listener.address().port)
 })
