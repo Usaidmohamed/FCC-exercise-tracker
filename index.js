@@ -35,24 +35,14 @@ app.get('/', (req, res) => {
 
 //POST API to add a new user to database
 app.post('/api/users', async (req, res) =>{
-  const {username} = req.body;
+  const addUser = new User({
+    username: req.body.username
+  });
   try {
-    const existingUser = await User.findOne({username});
-    if(existingUser){
-      return res.json({error: 'You are already an user'});
-    }
-    const addUser = new User({
-      username,
-    });
-
-    await addUser.save();
-    return res.json({
-      username: username,
-      user_id: addUser.id
-    });
-
+    const user = await addUser.save();
+    res.json(user);
   } catch (error) {
-    return res.json({error: 'Internal Server Error'});
+    console.log(error);
   }
 });
 
