@@ -11,6 +11,11 @@ mongoose.connect(process.env.MONGO_URL);
 const UserSchema = new Schema({
   username: String,
 });
+UserSchema.set('toJSON', {
+  transform: function (doc, ret){
+    delete ret._v;
+  }
+});
 const User = mongoose.model('User', UserSchema);
 
 const ExerciseSchema = new Schema({
